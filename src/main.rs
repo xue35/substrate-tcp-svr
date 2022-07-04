@@ -9,7 +9,7 @@ fn pong(mut stream: TcpStream) {
     match stream.read(&mut buf) {
         Ok(size) => {
             // 读取成功，打印一行垃圾信息。
-            println!("Connection received, now processing...");
+            println!("Received: {}", std::str::from_utf8(&buf).expect("valid utf8"));
             // 直接全部回写。
             stream.write(&buf[0..size]).unwrap();
         }
